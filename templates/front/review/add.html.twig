@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ReviewController!{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+        <h1>Ajouter une critique</h1>
+        <h2>{{ movie.title }}</h2>
+            {{ form(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

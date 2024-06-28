@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des CRUD{% endblock %}
+
+{% block main %}
+<h1>Crud list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom de l'entité</th>
+                <th>Liste</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Movie</td>
+                <td><a href="{{ path("browse_movie") }}">Liste</a></td>
+            </tr>
+            {# Le CRUD sur les user n'est accessible qu'au ROLE_ADMIN #}
+            {% if is_granted('ROLE_ADMIN') %}
+            <tr>
+                <td>User</td>
+                <td><a href="{{ path("app_back_user_index") }}">Liste</a></td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

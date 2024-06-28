@@ -1,0 +1,15 @@
+### 
+GET http://localhost/Symfony/oflix-Sadam-SIBY/public/api/movies HTTP/1.1
+
+### 
+GET http://localhost/Symfony/oflix-Sadam-SIBY/public/api/movies/49 HTTP/1.1
+
+
+### 
+POST http://localhost/Symfony/oflix-Sadam-SIBY/public/api/login_check HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "user@user.fr",
+    "password": "okokok"
+}

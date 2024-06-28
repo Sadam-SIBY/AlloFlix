@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Movie{% endblock %}
+
+{% block main %}
+    <h1 class = "ml-3">Ajouter un film</h1>
+<section class="container ">
+        <div class="row">
+            <div class="col ">
+                {{ form(form) }}
+        </div>
+    </div>
+</section
+
+   <a href="{{ path('browse_movie')}}"> Aller vers la liste</a>
+{% endblock %}

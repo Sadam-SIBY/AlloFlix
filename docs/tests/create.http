@@ -1,0 +1,13 @@
+POST http://localhost/Symfony/oflix-Sadam-SIBY/public/api/movie/new HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Le Baiser mortel du dragon",
+  "type": "Film",
+  "duration": 98,
+  "rating": 5,
+  "summary": "Le Baiser mortel du dragon est un film français 1 réalisé par Chris Nahon, produit par Luc Besson, sorti en 2001.",
+  "synopsis":"Liu Jiang (Jet Li) est un agent des services secrets chinois envoyé en mission à Paris pour aider la police française, et plus particulièrement l'inspecteur J.P. Richard (Tchéky Karyo), à arrêter un grand caïd de la drogue. ",
+  "releaseDate": "2001-10-05T02:00:44+01:00",
+  "poster": "https://th.bing.com/th?id=OSK.6060f837264588c45bdac330e376d85d&w=116&h=156&c=7&o=6&dpr=1.4&pid=SANGAM"
+}

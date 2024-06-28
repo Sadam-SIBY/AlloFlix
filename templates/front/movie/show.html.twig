@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+<div class="container bg-lighttt pt-5">
+
+        <div class="row mb-2">
+
+            <div class="col">
+
+                <div
+                    class="row g-0 borderrr rrrounded overflow-hidden flex-md-row align-items-start mb-4 shadow-smmm position-relative">
+                    <div class="col-4 movie__poster img-thumbnail"
+                        style="background-image: url({{ movie.poster }});">
+                        <img src="{{ asset('images/poster-placeholder.png') }}" class="img-fluid">
+                        <!-- img src="https://m.media-amazon.com/images/M/MV5BNThmZGY4NzgtMTM4OC00NzNkLWEwNmEtMjdhMGY5YTc1NDE4XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg" class="img-fluid" -->
+                    </div>
+
+                    <div class="col-8 p-4 d-flex flex-column position-static bg-light">
+                        <a href="{{ path('favorites_add', {id:movie.id}) }}" class="movie__favorite fs-1 my-2 mx-3 link-danger"><i class="bi bi-bookmark-plus"></i></a>
+                        <strong class="d-inline-block mb-2 text-primary">{{ movie.type }}</strong>
+                        <h3 class="mb-1">{{ movie.title }}</h3>
+                        <div class="mb-1 text-muted">{{ movie.duration }} min</div>
+                        {# Affichage de tous les genres associés au film #}
+                        <p>
+                            {% for genre in movie.genres %}
+                                <span class="badge bg-warning text-dark">{{ genre.name }}</span>
+                            {% endfor %}
+                        </p>
+                        <p>
+                        {{ movie.synopsis }}
+                        </p>
+                        <div class="d-flex mb-4" style="color: orange;">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                            <span class="ps-1">{{ movie.rating }}</span>
+                        </div>
+
+                    {# Ci dessous je place une condition qui vérifie si il y a bien au moins une saison lié au movie #}
+                        {% if movie.seasons|length >= 1 %}
+                        {# Ci dessous j'affiche le nombre d'itération qu'il y a dans movie.seasons #}
+                        {# dans l'objet movie, il y a une propriété seasons qui est egal a tous les objet season lié à l'objet movie #}
+                        <h2>{{ movie.seasons|length }} Saisons</h2>
+                        <ul class="list-unstyled">
+                        {# On va boucler sur tous les seasons lié à l'obejt movie (movie.seasons) #}
+                        {% for season in movie.seasons %}
+                            <li><span class="badge bg-danger fs-6 mb-2">Saison {{ season.number }}</span><small class="ms-1">({{ season.episodesNumber }} épisodes)</small></li>
+                        {% endfor %}
+                        </ul>
+                        {% endif %}
+                        <dl class="row">
+                            <dt class="col-sm-12">Avec</dt>
+                            <dd class="col-sm-12">
+                            {# On boucle sur tous les castings d'un film #}
+                            {# Pour afficher les castings dans l'ordre du creditOrder, on va tous recuperer directement dans l'ordre ascendant via la propriété creditOrder dans l'entité Movie via l'annotation [OrderBy...] #}
+                            {% for casting in movie.castings %}
+                                {{ casting.person.firstname }} {{ casting.person.lastname }} ({{ casting.role }})<br>
+                            {% endfor %}
+                            </dd>
+                            <dt class="col-sm-12">Pays</dt>
+                            <dd class="col-sm-12">USA</dd>
+                            <dt class="col-sm-12">Année</dt>
+                            <dd class="col-sm-12">1998</dd>
+                        </dl>
+                        <div>
+                            <h2>Critiques</h2>
+                            <a class="btn btn-sm btn-warning" href="{{ path('app_review_add', {id: movie.id})}}">Ajouter une critique</a>
+                            {% for review in movie.reviews %}
+                            <div class="mt-3">
+                             <strong>Postée le {{ review.watchedAt|date('d-m-Y') }}</strong> par {{ review.username }}<br>
+                             <strong>Commentaire</strong> : {{ review.content }}<br>
+                              <strong>Le film m'a fait</strong> : {{ review.reactions|join(',')}}<br>
+                               <strong>Note :<strong>
+                               <div style="color: orange">
+                                <span class="ps-1">{{ review.rating }}/5</span>
+                               </div>
+                            </div>
+                            {# Si aucune reviews #}
+                            {% else %}
+                                <p>Aucune critique disponible pour ce film.</p>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>  
+{% endblock %}

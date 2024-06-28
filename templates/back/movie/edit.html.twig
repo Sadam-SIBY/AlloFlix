@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Movie{% endblock %}
+
+{% block main %}
+<section class="container ">
+        <div class="row">
+            <div class="col ">
+    <h1>Edit Movie</h1>
+    {{ form(form) }}
+    <a href="{{ path('browse_movie') }}">back to list</a>
+    <a href="{{ path('remove_movie', {id:movie.id}) }}">delete movie</a>
+
+      </div>
+    </div>
+</section>
+{% endblock %}

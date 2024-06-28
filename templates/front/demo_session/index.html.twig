@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <h1>Hello {{ username }}</h1>
+
+    {# Ci dessous a chaque clic d'un des 4 boutons ca va modifier la valeur de la clé username dans la session en lui donnant la valeur de ce sur quoi on a cliqué #}
+    {# Par ex : si on clique sur kim, et bien dans la session username = kim #}
+    <p><a href="{{ path('demo_session_add',{username: "estelle"}) }}">estelle</a></p>
+    <p><a href="{{ path('demo_session_add',{username: "jeremie"}) }}">jeremie</a></p>
+    <p><a href="{{ path('demo_session_add',{username: "françois"}) }}">françois</a></p>
+    <p><a href="{{ path('demo_session_add',{username: "kim"}) }}">kim</a></p>
+{% endblock %}
